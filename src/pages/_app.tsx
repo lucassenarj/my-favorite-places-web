@@ -1,14 +1,12 @@
 import React from "react";
 import type { AppProps } from "next/app";
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "../styles/global";
-import theme from "../styles/theme";
+import "../styles/globals.css";
+import Layout from "../components/Layout";
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
-  <ThemeProvider theme={theme}>
+  <Layout>
     <Component {...pageProps} />
-    <GlobalStyle />
-  </ThemeProvider>
+  </Layout>
 );
 
 export default MyApp;
