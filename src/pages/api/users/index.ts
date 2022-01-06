@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import api from "./../../../services/api";
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,13 +7,13 @@ export default async function handler(
   if (req.method === "GET") {
     const page = req.query.page ? req.query.page : 1;
 
+    const API_PATH = "http://backend.my_favorite_places.dev.local/api/v0";
     try {
-      const response = await api.get(`/places?pages=${page}`);
-      console.log(response);
+      const response = await fetch(`${API_PATH}/users?pages=${page}`);
+      const result = await response.json();
 
-      return res.status(200).json(response);
+      return res.status(200).json(result.data);
     } catch (error) {
-      console.log(error);
       return res.status(401).json(error);
     }
   }
