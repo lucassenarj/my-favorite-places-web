@@ -1,4 +1,4 @@
-type Photo = {
+type IPhoto = {
   title: string;
   path: string;
   comment?: string;
@@ -7,4 +7,4 @@ type Photo = {
   created_at: string;
 };
 
-export default Photo;
+export default IPhoto;

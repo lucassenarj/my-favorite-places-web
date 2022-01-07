@@ -1,7 +1,9 @@
+import IPhoto from "./photo";
 import IUser from "./user";
 
 type IPlace = {
   place_id: number;
+  slug: string;
   title: string;
   address: string;
   latitude: string;
@@ -14,6 +16,7 @@ type IPlace = {
   created_at: string;
   rating_avg?: number;
   user: IUser;
+  photos?: IPhoto[];
 };
 
 export default IPlace;
