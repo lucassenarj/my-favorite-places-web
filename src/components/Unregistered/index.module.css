@@ -1,0 +1,71 @@
+.intro .logo {
+  border-bottom: 0;
+  display: inline-block;
+  margin: 0 0 1em 0;
+  overflow: hidden;
+  position: relative;
+  width: 7em;
+}
+
+.intro .logo img {
+  border-radius: 60px;
+  display: block;
+  margin-left: -0.25em;
+  width: 4.5em;
+}
+
+.intro header h2 {
+  font-size: 2em;
+  font-weight: 900;
+}
+
+.intro header p {
+  font-size: 0.8em;
+  font-family: "Raleway", Helvetica, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  line-height: 2.5;
+  margin-top: -1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1280px) {
+
+.intro {
+  margin: 0 0 3em 0;
+  text-align: center;
+}
+
+  .intro header h2 {
+    font-size: 2em;
+  }
+
+  .intro header p {
+    font-size: 0.7em;
+  }
+
+}
+
+@media screen and (max-width: 736px) {
+
+.intro {
+  margin: 0 0 1.5em 0;
+  padding: 1.25em 0;
+}
+
+  .intro > :last-child {
+    margin-bottom: 0;
+  }
+
+  .intro .logo {
+    margin: 0 0 0.5em 0;
+  }
+
+  .intro header h2 {
+    font-size: 1.25em;
+  }
+
+  .intro header > :last-child {
+    margin-bottom: 0;
+  }
+}
