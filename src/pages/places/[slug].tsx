@@ -1,9 +1,10 @@
 import React from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths } from "next";
 import IPlace from "../../types/place";
-import generateSlug from "../../helpers/generateSlug";
 import Head from "next/head";
 import Details from "../../components/Details";
+import getPlaceRequest from "../../services/requests/getPlaceRequest";
+import getPlacesRequest from "../../services/requests/getPlacesRequest";
 
 type Props = {
   place: IPlace;
@@ -24,13 +25,14 @@ function PlaceDetails({ place }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`http://localhost:3000/api/places?page=1`);
-  const places = await response.json();
+  const { data } = await getPlacesRequest();
 
-  const paths = places.map(({ title }: { title: string }) => {
+  const places = data;
+
+  const paths = places.map(({ slug }: { slug: string }) => {
     return {
       params: {
-        slug: generateSlug(title),
+        slug,
       },
     };
   });
@@ -41,13 +43,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async context => {
-  const slug = context.params?.slug;
+type Params = {
+  params: {
+    slug: string;
+  };
+};
 
-  const response = await fetch(
-    `http://localhost:3000/api/places/place?slug=${slug}`
-  );
-  const place = await response.json();
+export const getStaticProps = async ({ params }: Params) => {
+  const { slug } = params;
+
+  const place = await getPlaceRequest(slug);
 
   return {
     props: {
