@@ -1,22 +1,18 @@
 import React from "react";
+import IUser from "../../types/user";
 import About from "../About";
 import Footer from "../Footer";
-import MiniPlace from "../MiniPlace";
 import User from "../User";
 import styles from "./index.module.css";
 
-function Sidebar() {
+type Props = {
+  user: IUser;
+};
+
+function Sidebar({ user }: Props) {
   return (
     <section className={styles.sidebar}>
-      <User id="lucas-sena" name="Lucas Sena" />
-      <section>
-        <div className={styles.mini_posts}>
-          <MiniPlace />
-          <MiniPlace />
-          <MiniPlace />
-          <MiniPlace />
-        </div>
-      </section>
+      <User {...user} />
       <About />
       <Footer />
     </section>
