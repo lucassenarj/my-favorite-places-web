@@ -1,8 +1,8 @@
-import api from "./api";
+import api from "../api";
 
-async function recoverRequest(token: string) {
+async function recoverRequest(token: string, ctx?: any) {
   try {
-    const response = await api.post(
+    const response = await api(ctx).post(
       "/auth/me",
       {},
       {

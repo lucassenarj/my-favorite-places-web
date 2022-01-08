@@ -1,9 +1,9 @@
-import ILogin from "../types/login";
-import api from "./api";
+import ILogin from "../../types/login";
+import api from "../api";
 
 async function signInRequest({ email, password }: ILogin) {
   try {
-    const response = await api.post("/auth/login", {
+    const response = await api().post("/auth/login", {
       email,
       password,
     });

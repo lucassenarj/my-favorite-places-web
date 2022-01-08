@@ -1,7 +1,7 @@
-import api from "./api";
+import api from "../api";
 
 async function getPlacesRequest(page = 1) {
-  const { data } = await api.get(`/places?pages=${page}`);
+  const { data } = await api().get(`/places?page=${page}`);
 
   return data;
 }

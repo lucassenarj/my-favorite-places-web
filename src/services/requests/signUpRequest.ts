@@ -1,6 +1,6 @@
 import Router from "next/router";
-import IRegister from "../types/register";
-import api from "./api";
+import IRegister from "../../types/register";
+import api from "../api";
 
 async function signUpRequest({
   name,
@@ -11,7 +11,7 @@ async function signUpRequest({
   bio,
 }: IRegister) {
   try {
-    const response = await api.post("/users", {
+    const response = await api().post("/users", {
       name,
       email,
       password,

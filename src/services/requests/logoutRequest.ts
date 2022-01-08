@@ -1,8 +1,8 @@
-import api from "./api";
+import api from "../api";
 
 async function logoutRequest(token: string) {
   try {
-    const { status } = await api.post(
+    const { status } = await api().post(
       "/auth/logout",
       {},
       {

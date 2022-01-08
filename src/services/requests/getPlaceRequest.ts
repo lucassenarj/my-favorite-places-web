@@ -1,7 +1,7 @@
-import api from "./api";
+import apiInstance from "../api";
 
 async function getPlaceRequest(slug: string) {
-  const { data } = await api.get(`/places/${slug}`);
+  const { data } = await apiInstance().get(`/places/${slug}`);
 
   return data;
 }

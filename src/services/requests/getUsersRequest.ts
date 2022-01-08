@@ -1,7 +1,7 @@
-import api from "./api";
+import api from "../api";
 
 async function getUsersRequest(page = 1) {
-  const { data } = await api.get(`/users?pages=${page}`);
+  const { data } = await api().get(`/users?page=${page}`);
 
   return data;
 }
