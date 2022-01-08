@@ -15,10 +15,6 @@ const navItems = [
     text: "about",
     path: "/about",
   },
-  {
-    text: "login",
-    path: "/login",
-  },
 ];
 
 export default navItems;
