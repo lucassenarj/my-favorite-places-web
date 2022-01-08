@@ -1,13 +1,10 @@
 import axios, { AxiosInstance } from "axios";
 import { parseCookies } from "nookies";
 
-const BASE_URL =
-  process.env.NODE_ENV === "development"
-    ? process.env.NEXT_PUBLIC_API_URL
-    : process.env.API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function apiInstance(ctx?: any): AxiosInstance {
-  const { "myfavoriteplaces.token": token } = parseCookies();
+  const { "myfavoriteplaces.token": token } = parseCookies(ctx);
 
   const api = axios.create({
     baseURL: BASE_URL,

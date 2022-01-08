@@ -42,8 +42,6 @@ function MyPlaces() {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const { ["myfavoriteplaces.token"]: token } = parseCookies(ctx);
-
-  console.log(parseCookies());
   if (!token) {
     return {
       redirect: {
