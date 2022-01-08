@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styles from "./index.module.css";
 
@@ -6,15 +7,14 @@ function About() {
     <section className={styles.blurb}>
       <h2>About</h2>
       <p>
-        Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed
-        mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna
-        enim, ac accumsan tortor cursus at phasellus sed ultricies.
+        My Favorite Places is a project developed in 2017 where users could save
+        and share their favorite places.
       </p>
       <ul className="actions">
         <li>
-          <a href="#" className="button">
-            Learn More
-          </a>
+          <Link href="/about">
+            <a className="button">Learn More</a>
+          </Link>
         </li>
       </ul>
     </section>

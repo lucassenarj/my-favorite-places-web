@@ -1,26 +1,31 @@
 import React from "react";
 import styles from "./index.module.css";
-import Avatar from "../../assets/images/avatar.jpg";
-import Pic04 from "../../assets/images/pic04.jpg";
-import Image from "next/image";
+import IPlace from "../../types/place";
+import getPlaceThumbnail from "../../helpers/getPlaceThumbnail";
+import Link from "next/link";
 
-function MiniPlace() {
+function MiniPlace(place: IPlace) {
+  const thumbnail = getPlaceThumbnail({
+    title: place.title,
+    thumbnail: place.thumbnail,
+  });
+  const date = new Date(place.created_at);
+  const placePath = `/places/${place.slug}`;
   return (
     <article className={styles.mini_post}>
       <header>
         <h3>
-          <a href="single.html">Vitae sed condimentum</a>
+          <Link href={placePath}>
+            <a>{place.title}</a>
+          </Link>
         </h3>
-        <time className={styles.published} dateTime="2015-10-20">
-          October 20, 2015
+        <time className={styles.published} dateTime={date.toJSON()}>
+          {date.toLocaleDateString()}
         </time>
-        <a href="#" className={styles.author}>
-          <Image src={Avatar} alt="" />
-        </a>
       </header>
-      <a href="single.html" className={styles.image}>
-        <Image src={Pic04} alt="" />
-      </a>
+      <Link href={placePath}>
+        <a className={styles.image}>{thumbnail}</a>
+      </Link>
     </article>
   );
 }

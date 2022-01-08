@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Menu from "../Menu";
 
 type Props = {
   children: JSX.Element;
 };
 
 function Layout({ children }: Props) {
+  const [display, setDisplay] = useState(false);
+
+  function handleDisplay() {
+    setDisplay(!display);
+  }
+
   return (
     <div className="wrapper">
-      <Header />
-      <div className="main">{children}</div>
-      <Sidebar />
+      <Header handleOnClick={handleDisplay} />
+      <div onClick={handleDisplay}>
+        <Menu display={display} />
+      </div>
+      {children}
     </div>
   );
 }

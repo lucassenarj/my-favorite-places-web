@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import generateSlug from "../../helpers/generateSlug";
+import getPhotoThumbnail from "../../helpers/getPhotoThumbnail";
 import getPlaceThumbnail from "../../helpers/getPlaceThumbnail";
 import getUserAvatar from "../../helpers/getUserAvatar";
 import IPlace from "../../types/place";
@@ -13,7 +13,7 @@ function Details(place: IPlace) {
     thumbnail: place.thumbnail,
   });
   const date = new Date(place.created_at);
-  const userPath = `/users/${generateSlug(place.user.name)}`;
+  const userPath = `/users/${place.user.username}`;
 
   return (
     <article className={styles.post}>
@@ -38,11 +38,17 @@ function Details(place: IPlace) {
         {thumbnail}
       </span>
       <p>{place.description}</p>
+      <ul>
+        {place.photos &&
+          place.photos.map((photo, index) => (
+            <li key={index}>{getPhotoThumbnail(photo.path, place.title)}</li>
+          ))}
+      </ul>
       <footer>
         <ul className={styles.stats}>
           <li>
             <a href="#" className="icon solid fa-heart">
-              {place.rating_avg ? place.rating_avg : 0}
+              {place.rating_avg ? Number(place.rating_avg).toFixed(1) : 0}
             </a>
           </li>
         </ul>

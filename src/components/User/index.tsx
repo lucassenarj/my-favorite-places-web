@@ -1,28 +1,18 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import Logo from "../../assets/images/author.jpg";
+import Link from "next/link";
+import getUserAvatar from "../../helpers/getUserAvatar";
+import IUser from "../../types/user";
 import styles from "./index.module.css";
 
-type IUser = {
-  id: string;
-  name: string;
-};
-
-function User({ id, name }: IUser) {
+function User({ username, name, avatar = "", bio }: IUser) {
   return (
     <section className={styles.intro}>
-      <Link href={`/users/${id}`}>
-        <a className={styles.logo}>
-          <Image src={Logo} alt={name} />
-        </a>
+      <Link href={`/users/${username}`}>
+        <a className={styles.logo}>{getUserAvatar(name, avatar)}</a>
       </Link>
       <header>
         <h2>{name}</h2>
-        <p>
-          Another fine responsive site template by
-          <a href="http://html5up.net">HTML5 UP</a>
-        </p>
+        {bio && <p>{bio}</p>}
       </header>
     </section>
   );
