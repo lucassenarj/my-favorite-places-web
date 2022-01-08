@@ -4,61 +4,65 @@ import { AuthContext } from "../../contexts/AuthContext";
 import navItems from "../../helpers/navItems";
 import styles from "./index.module.css";
 
-type IHeader = {
-  handleOnClick: any;
-};
-
-function Header({ handleOnClick }: IHeader): JSX.Element {
+function Menu({ display }: { display: boolean }) {
   const { isAuthenticated } = useContext(AuthContext);
   return (
-    <header className={styles.header}>
-      <h1>
-        <Link href="/">
-          <a>Favorite Places</a>
-        </Link>
-      </h1>
-      <nav className={styles.links}>
-        <ul>
+    <section
+      className={[styles.menu, display ? styles.is_menu_visible : ""].join(" ")}
+    >
+      <section>
+        <nav className={styles.hide}>
+          <ul>
+            <li>
+              <a className="fa-bars" href="#">
+                Menu
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+
+      <section>
+        <ul className={styles.links}>
           {navItems.map((item, index) => (
             <li key={index}>
               <Link href={item.path}>
-                <a>{item.text}</a>
+                <a>
+                  <p>{item.text}</p>
+                </a>
               </Link>
             </li>
           ))}
           {isAuthenticated ? (
             <li>
               <Link href="/logout">
-                <a>Logout</a>
+                <a>
+                  <p>Logout</p>
+                </a>
               </Link>
             </li>
           ) : (
             <>
               <li>
                 <Link href="/login">
-                  <a>Login</a>
+                  <a>
+                    <p>Login</p>
+                  </a>
                 </Link>
               </li>
               <li>
                 <Link href="/register">
-                  <a>Register</a>
+                  <a>
+                    <p>Register</p>
+                  </a>
                 </Link>
               </li>
             </>
           )}
         </ul>
-      </nav>
-      <nav className={styles.main}>
-        <ul>
-          <li className={styles.menu}>
-            <a className="fa-bars" href="#" onClick={handleOnClick}>
-              Menu
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+      </section>
+    </section>
   );
 }
 
-export default Header;
+export default Menu;
